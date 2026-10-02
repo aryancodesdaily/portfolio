@@ -1,0 +1,147 @@
+{
+  "personal": {
+    "name": "Aryan Chaturvedi",
+    "role": "B.Tech Computer Science & Engineering Student",
+    "college": "Indian Institute of Information Technology (IIIT) Sonepat",
+    "graduation_year": 2029,
+    "current_standing": "2nd Year (3rd Semester)",
+    "location": "Sonepat, Haryana, India"
+  },
+  "education": {
+    "degree": "Bachelor of Technology (B.Tech)",
+    "branch": "Computer Science and Engineering",
+    "institution": "IIIT Sonepat",
+    "batch": "2025 - 2029",
+    "academic_performance": {
+      "semester_1_sgpa": "9.04",
+      "semester_2_sgpa": "8.20"
+    }
+  },
+  "technical_skills": {
+    "languages": [
+      "C++",
+      "Python",
+      "JavaScript"
+    ],
+    "core_computer_science": [
+      "Data Structures and Algorithms",
+      "Object-Oriented Programming (OOP)",
+      "Time and Space Complexity Optimization"
+    ],
+    "backend_and_ai": [
+      "FastAPI",
+      "Groq API",
+      "Pydantic",
+      "Structured LLM Output",
+      "Streaming APIs"
+    ],
+    "developer_tools": [
+      "Git",
+      "GitHub",
+      "VS Code",
+      "uv"
+    ]
+  },
+  "problem_solving_and_dsa": {
+    "philosophy": "Prefers understanding algorithms from first principles and edge-case analysis over rote memorization.",
+    "focus_areas": [
+      "Arrays",
+      "Trees",
+      "Heaps or Priority Queues",
+      "Binary Search",
+      "Math and Number Theory",
+      "Backtracking"
+    ],
+    "platforms": {
+      "leetcode": {
+        "profile": "https://leetcode.com/u/aryanc0dsdaily/",
+        "problems_solved": "150+"
+      },
+      "codechef": {
+        "profile": "https://www.codechef.com/users/aryanc0dsdaily",
+        "peak_rating": "1288"
+      },
+      "codeforces": {
+        "problems_solved": "~50"
+      }
+    }
+  },
+  "projects": [
+    {
+      "name": "LLM Resume Matcher",
+      "type": "Applied AI / Document Processing",
+      "status": "Completed",
+      "description": "An automated resume screening tool that extracts structured requirements from a job description and evaluates multiple candidate resumes (PDF/DOCX) to compute a match score and candidate ranking.",
+      "technologies": [
+        "Python",
+        "Groq API (openai/gpt-oss-120b)",
+        "Pydantic",
+        "pypdf",
+        "python-docx",
+        "uv",
+        "python-dotenv"
+      ],
+      "features": [
+        "Structured extraction from job descriptions (roles, skills, experience, responsibilities)",
+        "Text extraction from PDF and DOCX resumes",
+        "Resume parsing into strongly typed JSON structures (education, skills, projects, certifications)",
+        "Multi-factor evaluation (technical skills, project relevance, experience match)",
+        "Batch processing and ranking of multiple resumes from a directory",
+        "Tested using synthetic resumes"
+      ],
+      "repository": "https://github.com/aryancodesdaily/llm-resume-matcher"
+    },
+    {
+      "name": "AI Portfolio Assistant",
+      "type": "Full-Stack AI Application",
+      "status": "In Development",
+      "description": "An interactive portfolio web app featuring a real-time streaming AI chatbot that accurately answers visitor and recruiter questions about Aryan.",
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "Groq API",
+        "React",
+        "JavaScript"
+      ],
+      "features": [
+        "Real-time token streaming using chunked HTTP transfer",
+        "Sliding-window context memory to keep multi-turn conversation coherent without context explosion",
+        "Strict grounding to avoid hallucinations about unverified skills or private details"
+      ],
+      "repository": "https://github.com/aryancodesdaily"
+    }
+  ],
+  "hackathons": [
+    {
+      "name": "Graphic Era Hill University 24-Hour Offline Hackathon",
+      "team_size": 4,
+      "details": "Competed against 440+ registered teams, successfully qualified among the Top 80 teams for the 24-hour offline build round, and advanced into the final rounds (stood at rank 19 prior to final winner-only declaration)."
+    },
+    {
+      "name": "Smart India Hackathon (SIH)",
+      "details": "Participated in college internal rounds in the 1st year; participated again in 2nd year internal rounds (results pending)."
+    }
+  ],
+  "clubs_and_extracurriculars": {
+    "college_club": "Impact Club, IIIT Sonepat",
+    "role": "Core Member (1st Year)",
+    "talents_and_achievements": [
+      "Selected as core member for performing arts and vocal mimicry.",
+      "Skilled in mimicry of multiple Bollywood actors (Shah Rukh Khan, Ajay Devgn) and cartoon voice casts (Hindi dub of Oggy and the Cockroaches).",
+      "Awarded a medal and certificate at a college cultural event for an on-stage faculty mimicry performance."
+    ]
+  },
+  "profiles_and_contact": {
+    "linkedin": "https://linkedin.com/in/aryan-chaturvedi-66a142374",
+    "github": "https://github.com/aryancodesdaily",
+    "communication_preference": "Visitors and recruiters can connect via LinkedIn or view active code on GitHub. Private phone and email are not shared publicly."
+  },
+  "persona_instructions_for_ai": {
+    "vibe": "Ambitious, genuine, high-agency engineering undergraduate. Speaks with clarity, owns what he knows, and stays completely truthful about what is completed vs. in progress.",
+    "talking_points": [
+      "Highlights a strong academic start (9.04 SGPA in Sem 1) while actively writing code, grinding DSA, and building practical systems.",
+      "Balances low-level/algorithmic understanding in C++ with modern async backend and applied LLM tooling in Python.",
+      "Has hands-on 24-hour hackathon experience and creative stage confidence from cultural club involvement."
+    ]
+  }
+}
