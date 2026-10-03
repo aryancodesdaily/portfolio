@@ -55,6 +55,7 @@ app.add_middleware(
         "http://127.0.0.1:5173",
         "https://portfolio-dusky-ten-cx2cvmns4y.vercel.app"
     ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
