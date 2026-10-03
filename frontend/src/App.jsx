@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import "./App.css";
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 // Comprehensive Pool of Verified Questions
 const ALL_SUGGESTIONS = [
@@ -70,7 +70,7 @@ export default function App() {
   const messages = activeChat ? activeChat.messages : [];
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
   };
 
   useEffect(() => {
