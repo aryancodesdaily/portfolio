@@ -8,16 +8,16 @@ const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 // Comprehensive Pool of Verified Questions
 const ALL_SUGGESTIONS = [
-  "Give me the 30-second elevator pitch on Aryan.",
-  "How does his LLM Resume Matcher work under the hood?",
-  "Why consider Aryan for a Software Engineering internship?",
-  "Break down his problem-solving stats & algorithmic background.",
-  "What's his core backend & tech stack?",
-  "Tell me about his 24-hour offline hackathon experience.",
-  "What is Aryan currently learning and building?",
-  "Any interesting facts about Aryan outside of tech?",
-  "How does he balance low-level C++ with modern Python backends?",
-  "What did he build for this portfolio assistant?"
+  "Can you give me a quick overview of Aryan?",
+  "How does Aryan's LLM Resume Matcher actually work?",
+  "What makes Aryan a good fit for a software engineering internship?",
+  "How strong is Aryan at DSA and competitive programming?",
+  "What technologies and backend tools does Aryan work with?",
+  "What did Aryan build during his 24-hour offline hackathon?",
+  "What is Aryan working on and learning right now?",
+  "What does Aryan like to do outside of coding?",
+  "How does Aryan combine C++ and problem-solving with Python backend development?",
+  "How did Aryan build this AI portfolio assistant?",
 ];
 
 // Helper to pick 4 random distinct suggestions
@@ -46,19 +46,20 @@ export default function App() {
       try {
         const parsed = JSON.parse(saved);
         if (parsed.length > 0) return parsed[0].id;
-      } catch (e) { }
+      } catch (e) {}
     }
     return crypto.randomUUID();
   });
 
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [currentSuggestions, setCurrentSuggestions] = useState(getRandomSuggestions);
+  const [currentSuggestions, setCurrentSuggestions] =
+    useState(getRandomSuggestions);
 
   // Job Match Modal State
   const [isJobMatchModalOpen, setIsJobMatchModalOpen] = useState(false);
   const [jobDescription, setJobDescription] = useState("");
-
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
 
@@ -92,7 +93,7 @@ export default function App() {
     const newChatObj = {
       id: newId,
       title: "New Conversation",
-      messages: []
+      messages: [],
     };
     setChats((prev) => [newChatObj, ...prev]);
     setActiveChatId(newId);
@@ -117,7 +118,9 @@ export default function App() {
       setActiveChatId(filtered[0].id);
     }
 
-    fetch(`${API_BASE_URL}/chat/${idToDelete}`, { method: "DELETE" }).catch(() => { });
+    fetch(`${API_BASE_URL}/chat/${idToDelete}`, { method: "DELETE" }).catch(
+      () => {},
+    );
   };
 
   // 3. Streaming Chat Engine
@@ -130,7 +133,8 @@ export default function App() {
 
     let updatedTitle = activeChat.title;
     if (activeChat.messages.length === 0) {
-      updatedTitle = userText.length > 25 ? userText.substring(0, 25) + "..." : userText;
+      updatedTitle =
+        userText.length > 25 ? userText.substring(0, 25) + "..." : userText;
     }
 
     setChats((prevChats) =>
@@ -142,12 +146,12 @@ export default function App() {
             messages: [
               ...chat.messages,
               { role: "user", content: userText },
-              { role: "assistant", content: "" }
-            ]
+              { role: "assistant", content: "" },
+            ],
           };
         }
         return chat;
-      })
+      }),
     );
 
     setIsLoading(true);
@@ -158,8 +162,8 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chat_id: activeChatId,
-          message: userText
-        })
+          message: userText,
+        }),
       });
 
       if (!response.ok) {
@@ -183,12 +187,12 @@ export default function App() {
               const msgs = [...chat.messages];
               msgs[msgs.length - 1] = {
                 role: "assistant",
-                content: accumulated
+                content: accumulated,
               };
               return { ...chat, messages: msgs };
             }
             return chat;
-          })
+          }),
         );
       }
     } catch (err) {
@@ -199,12 +203,13 @@ export default function App() {
             const msgs = [...chat.messages];
             msgs[msgs.length - 1] = {
               role: "assistant",
-              content: "Connection error: Unable to communicate with the backend."
+              content:
+                "Connection error: Unable to communicate with the backend.",
             };
             return { ...chat, messages: msgs };
           }
           return chat;
-        })
+        }),
       );
     } finally {
       setIsLoading(false);
@@ -264,7 +269,10 @@ export default function App() {
         </div>
 
         <div className="sidebar-footer">
-          <button className="btn-job-match" onClick={() => setIsJobMatchModalOpen(true)}>
+          <button
+            className="btn-job-match"
+            onClick={() => setIsJobMatchModalOpen(true)}
+          >
             <div className="badge-icon">⚡</div>
             <div className="job-match-text">
               <strong>Match Aryan with JD</strong>
@@ -274,9 +282,93 @@ export default function App() {
         </div>
       </aside>
 
+      {isMobileSidebarOpen && (
+        <div
+          className="mobile-sidebar-overlay"
+          onClick={() => setIsMobileSidebarOpen(false)}
+        >
+          <aside
+            className="mobile-sidebar"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mobile-sidebar-header">
+              <div className="brand">
+                <div className="brand-dot"></div>
+                <span className="brand-name">Aryan AI</span>
+              </div>
+
+              <button
+                className="mobile-sidebar-close"
+                onClick={() => setIsMobileSidebarOpen(false)}
+              >
+                ×
+              </button>
+            </div>
+
+            <button className="btn-new-chat" onClick={handleNewChat}>
+              <span className="plus-icon">+</span>
+              <span>New Chat</span>
+            </button>
+
+            <div className="history-section">
+              <p className="section-label">Recent Sessions</p>
+
+              <div className="chat-list">
+                {chats.map((c) => (
+                  <div
+                    key={c.id}
+                    className={`chat-item ${
+                      c.id === activeChatId ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setActiveChatId(c.id);
+                      setIsMobileSidebarOpen(false);
+                    }}
+                  >
+                    <span className="chat-title">{c.title}</span>
+
+                    <button
+                      className="btn-delete"
+                      title="Delete Chat"
+                      onClick={(e) => handleDeleteChat(e, c.id)}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="sidebar-footer">
+              <button
+                className="btn-job-match"
+                onClick={() => {
+                  setIsJobMatchModalOpen(true);
+                  setIsMobileSidebarOpen(false);
+                }}
+              >
+                <div className="badge-icon">⚡</div>
+
+                <div className="job-match-text">
+                  <strong>Match Aryan with JD</strong>
+                  <small>Evaluate profile fit for your role</small>
+                </div>
+              </button>
+            </div>
+          </aside>
+        </div>
+      )}
       {/* Main Viewport */}
       <main className="chat-viewport">
         <header className="topbar">
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setIsMobileSidebarOpen(true)}
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+
           <div className="header-info">
             <div className="title-row">
               <h2>Aryan's Portfolio Assistant</h2>
@@ -286,14 +378,23 @@ export default function App() {
               </span>
             </div>
             <p className="header-subtitle">
-              IIIT Sonepat (CSE) • Competitive Programming • Backend & Applied AI[cite: 3]
+              IIIT Sonepat (CSE) • Competitive Programming • Backend & Applied
+              AI[cite: 3]
             </p>
           </div>
           <div className="social-links">
-            <a href="https://github.com/aryancodesdaily" target="_blank" rel="noreferrer">
+            <a
+              href="https://github.com/aryancodesdaily"
+              target="_blank"
+              rel="noreferrer"
+            >
               GitHub ↗
             </a>
-            <a href="https://linkedin.com/in/aryan-chaturvedi-66a142374" target="_blank" rel="noreferrer">
+            <a
+              href="https://linkedin.com/in/aryan-chaturvedi-66a142374"
+              target="_blank"
+              rel="noreferrer"
+            >
               LinkedIn ↗
             </a>
           </div>
@@ -305,7 +406,8 @@ export default function App() {
               <div className="avatar-large">AC</div>
               <h1>Explore Aryan's Work & Skills</h1>
               <p className="welcome-tagline">
-                Ask anything about my projects, algorithmic background, hackathons, or tech stack.
+                Ask anything about my projects, algorithmic background,
+                hackathons, or tech stack.
               </p>
 
               <div className="suggestions-grid">
@@ -373,7 +475,8 @@ export default function App() {
               </button>
             </div>
             <p className="dock-note">
-              Grounded strictly in Aryan's verified achievements. No hallucinations.
+              Grounded strictly in Aryan's verified achievements. No
+              hallucinations.
             </p>
           </div>
         </div>
@@ -381,17 +484,24 @@ export default function App() {
 
       {/* Job Match Modal */}
       {isJobMatchModalOpen && (
-        <div className="modal-overlay" onClick={() => setIsJobMatchModalOpen(false)}>
+        <div
+          className="modal-overlay"
+          onClick={() => setIsJobMatchModalOpen(false)}
+        >
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h3>⚡ Match Aryan with a Job Description</h3>
-              <button className="btn-close" onClick={() => setIsJobMatchModalOpen(false)}>
+              <button
+                className="btn-close"
+                onClick={() => setIsJobMatchModalOpen(false)}
+              >
                 ×
               </button>
             </div>
             <p className="modal-desc">
-              Paste the requirements or description for an internship or software role below.
-              The AI will evaluate how well Aryan's skills and projects align with your opening.
+              Paste the requirements or description for an internship or
+              software role below. The AI will evaluate how well Aryan's skills
+              and projects align with your opening.
             </p>
             <textarea
               className="modal-textarea"
@@ -401,7 +511,10 @@ export default function App() {
               placeholder="Paste Job Description / Requirements here..."
             />
             <div className="modal-actions">
-              <button className="btn-cancel" onClick={() => setIsJobMatchModalOpen(false)}>
+              <button
+                className="btn-cancel"
+                onClick={() => setIsJobMatchModalOpen(false)}
+              >
                 Cancel
               </button>
               <button
