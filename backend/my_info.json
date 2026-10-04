@@ -4,7 +4,7 @@
     "role": "B.Tech Computer Science & Engineering Student",
     "college": "Indian Institute of Information Technology (IIIT) Sonepat",
     "graduation_year": 2029,
-    "current_standing": "2nd Year (3rd Semester)",
+    "current_standing": "2nd Year",
     "location": "Sonepat, Haryana, India"
   },
   "education": {
@@ -119,16 +119,16 @@
     },
     {
       "name": "Smart India Hackathon (SIH)",
-      "details": "Participated in college internal rounds in the 1st year; participated again in 2nd year internal rounds (results pending)."
+      "details": "Participated in college internal rounds in the 1st year; participated again in 2nd year internal rounds (qualifies internal round)."
     }
   ],
   "clubs_and_extracurriculars": {
     "college_club": "Impact Club, IIIT Sonepat",
-    "role": "Core Member (1st Year)",
+    "role": "Core Member (2nd Year)",
     "talents_and_achievements": [
       "Selected as core member for performing arts and vocal mimicry.",
+      "Awarded a medal and certificate at a college cultural event for an on-stage faculty mimicry performance.",
       "Skilled in mimicry of multiple Bollywood actors (Shah Rukh Khan, Ajay Devgn) and cartoon voice casts (Hindi dub of Oggy and the Cockroaches).",
-      "Awarded a medal and certificate at a college cultural event for an on-stage faculty mimicry performance."
     ]
   },
   "profiles_and_contact": {
